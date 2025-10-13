@@ -1,2 +1,2 @@
-# KNIT-WebD
-Here you will get source codes of KNIT CSE that you need.
+# KNIT Website
+Soruce codes of tasks for Web Design Workshop 
