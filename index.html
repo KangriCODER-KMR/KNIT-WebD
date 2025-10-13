@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>College Book Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/app.js" defer></script>
+</head>
+<body>
+  <header class="header">
+    <div class="brand">
+      <img class="brand-logo" src="https://img.icons8.com/fluency/48/graduation-cap.png" alt="College Logo">
+      <div class="brand-text">
+        <div class="brand-name">ABC College</div>
+        <div class="brand-subtitle">Official Book Store</div>
+      </div>
+    </div>
+    <nav class="top-links">
+      <a href="#login-section">Login</a>
+      <a href="#catalogue-section" id="nav-catalogue" class="disabled" aria-disabled="true">Catalogue</a>
+      <a href="#cart-section" id="nav-cart" class="disabled" aria-disabled="true">Cart</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- Login Section -->
+    <section id="login-section" class="panel">
+      <h2>Login</h2>
+      <form id="login-form" novalidate>
+        <div class="form-row">
+          <label for="username">Username</label>
+          <input id="username" name="username" type="text" placeholder="Enter username" required>
+          <div class="error" id="username-error"></div>
+        </div>
+        <div class="form-row">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" placeholder="Enter password" required>
+          <div class="error" id="password-error"></div>
+        </div>
+        <div class="form-row">
+          <label for="branch">Branch</label>
+          <select id="branch" name="branch" required>
+            <option value="" disabled selected>Select branch</option>
+            <option value="CSE">CSE</option>
+            <option value="ECE">ECE</option>
+            <option value="EEE">EEE</option>
+            <option value="CIVIL">CIVIL</option>
+          </select>
+          <div class="error" id="branch-error"></div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Login</button>
+          <button type="reset" class="btn">Reset</button>
+          <button type="button" class="btn btn-link" id="forgot-link">Forgot password?</button>
+        </div>
+      </form>
+      <p class="muted">Tip: This demo validates inputs locally; no server is required.</p>
+    </section>
+
+    <!-- Catalogue Section (hidden until login) -->
+    <section id="catalogue-section" class="panel hidden">
+      <div class="catalogue-header">
+        <div>
+          <h2>Catalogue — <span id="current-branch">CSE</span></h2>
+          <div class="muted">Welcome, <span id="greeting-username">Guest</span>!</div>
+        </div>
+        <div class="branch-switcher">
+          <label for="branch-select">Change branch</label>
+          <select id="branch-select">
+            <option value="CSE">CSE</option>
+            <option value="ECE">ECE</option>
+            <option value="EEE">EEE</option>
+            <option value="CIVIL">CIVIL</option>
+          </select>
+        </div>
+      </div>
+
+      <table class="books" id="catalogue-table" aria-label="Books Catalogue">
+        <thead>
+          <tr>
+            <th>Cover</th>
+            <th>Book</th>
+            <th>Author</th>
+            <th>Publisher</th>
+            <th>Price</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="catalogue-body">
+          <!-- Filled by JS -->
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Cart Section (visible after login) -->
+    <section id="cart-section" class="panel hidden">
+      <h2>Your Cart</h2>
+      <p id="cart-empty" class="muted">Your cart is empty.</p>
+      <table class="books" id="cart-table" aria-label="Cart Table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Branch</th>
+            <th>Qty</th>
+            <th>Unit Price</th>
+            <th>Line Total</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="cart-items">
+          <!-- Filled by JS -->
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="4" class="total-label">Subtotal</td>
+            <td class="price" id="subtotal">$0.00</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td colspan="4" class="total-label">Tax (5%)</td>
+            <td class="price" id="tax">$0.00</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td colspan="4" class="total-label grand">Grand Total</td>
+            <td class="price grand" id="grand-total">$0.00</td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+      <div class="form-actions">
+        <button type="button" class="btn btn-danger" id="clear-cart">Clear Cart</button>
+        <button type="button" class="btn btn-success" id="checkout">Checkout</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Forgot Password Modal -->
+  <div id="forgot-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="forgot-title">
+    <div class="modal-backdrop" data-close="true"></div>
+    <div class="modal-dialog">
+      <h3 id="forgot-title">Reset Password</h3>
+      <p class="muted">Enter your email or username. We’ll simulate sending a reset link.</p>
+      <form id="forgot-form">
+        <div class="form-row">
+          <label for="forgot-identifier">Email or Username</label>
+          <input id="forgot-identifier" name="identifier" type="text" placeholder="name@domain.com or username" required>
+          <div class="error" id="forgot-error"></div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Send reset link</button>
+          <button type="button" class="btn" data-close="true">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container small muted">
+      © <span id="year"></span> ABC College Book Store — Demo single-page site
+    </div>
+  </footer>
+</body>
+</html>
